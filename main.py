@@ -4,7 +4,7 @@ import requests
 def sendOtp(phoneNumber):
     headers = {
         "Content-Type":"application/json",
-        "ApiKey":"6be2dd73-cc5c-4a03-a42a-3638d687ffc5"
+        "ApiKey":""
     }
     data = {
         "PhoneNumber":phoneNumber
