@@ -25,7 +25,6 @@ def verifyOtp(phoneNumber,verificationCode,otp):
     res = requests.post("https://api.igniteauth.in/OTP/verifyOTP",headers=headers,json=data)
     return res.text
 
-password = "xUSx9r8DZpmURiNe"
 
 app  = Flask(__name__)
 
