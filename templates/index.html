@@ -1,0 +1,11 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+  <div class="container mx-auto px-4">
+    <h2 class="text-2xl font-semibold mb-4">Welcome to Flask User Authentication</h2>
+    <p>Please login or sign up to continue.</p>
+    <a href="{{ url_for('login') }}" class="text-blue-500">Login</a>
+    <span class="mx-2">or</span>
+    <a href="{{ url_for('signup') }}" class="text-blue-500">Sign Up</a>
+  </div>
+{% endblock %}
