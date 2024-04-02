@@ -8,6 +8,7 @@ app.secret_key = 'process.env.JWT_SECRET'
 client = MongoClient('')  
 db = client['flask-auth']  
 users_collection = db['users']  
+attendance_collection = db['attendance']
 
 @app.route('/')
 def index():
@@ -49,10 +50,27 @@ def login():
 def welcome(username):
     user = users_collection.find_one({'username': username})
     if user:
-        return render_template('dashboard.html', user=user)
+        return render_template('dashboard.html', username=username)
     else:
         flash('User not found.', 'danger')
         return redirect(url_for('index'))
+    
+
+@app.route('/save_attendance', methods=['POST'])
+def save_attendance():
+    if request.method == 'POST':
+        username = request.form['username']
+        total_lectures = int(request.form['total_lectures'])
+        attended_lectures = int(request.form['attended_lectures'])
+        
+        attendance_collection.insert_one({'username': username, 'total_lectures': total_lectures, 'attended_lectures': attended_lectures})
+
+        flash('Attendance saved successfully.', 'success')
+        return redirect(url_for('welcome', username=username))
+    else:
+        flash('Invalid request method.', 'danger')
+        return redirect(url_for('index'))
+   
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -2,19 +2,30 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0 ">
-  <title>Flask User Authentication</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flask User Authentication  </title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="bg-gray-100">
-  <header class="bg-blue-500 text-white py-5">
-    <div class="container mx-auto px-2 ">
-      <h1 class="text-2xl font-semibold"><a href="http://localhost:5000">Flask Auth API</a></h1>
+  
+  <header class="bg-blue-500 text-white py-5 flex justify-between items-center">
+    <div class="container mx-auto px-2">
+      <h1 class="text-2xl font-semibold"><a href="http://localhost:5000">Attendance Calculator </a></h1>
+    </div>
+    <div class="flex items-center mr-4">
+      <span class="text-sm text-gray-200 font-bold">Made With 
+        <br> flask-wiz</span>
+      <a href="https://github.com/krishvsoni/flask-wiz" class="ml-2" target="_blank">
+        <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub" class="h-6">
+      </a>
+      <a href="https://pypi.org/project/flask-wiz/" class="ml-2" target="_blank">
+        <img src="https://raw.githubusercontent.com/github/explore/666de02829613e0244e9441b114edb85781e972c/topics/pip/pip.png" alt="PyPI" class="h-6">
+      </a>
     </div>
   </header>
+  
   <section class="container mx-auto px-4 py-8">
     {% block content %}{% endblock %}
   </section>
 </body>
 </html>
-
