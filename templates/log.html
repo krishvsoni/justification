@@ -1,8 +1,8 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-    <div class="container mx-4 px-4 flex items-center justify-center height: dvh">
-      <div class="text-center">
+<div class="container mx-8 px-4" style="display: flex; justify-content: center; align-items: center; height: 80vh;  background-color: rgb(147 197 253);">
+  <div class="text-center">
         <h2 class="text-2xl font-bold dark:text-white">Welcome Back User</h2>
         <br>
         {% with messages = get_flashed_messages() %}
@@ -14,7 +14,7 @@
             </ul>
           {% endif %}
         {% endwith %}
-        <form method="post" action="{{ url_for('login') }}" class="max-w-md mx-auto">
+        <form method="post" action="{{ url_for('login') }}" class="max-w-md mx-auto ">
           <div class="mb-4">
             <label for="username" class="block text-gray-700">Username:</label>
             <input type="text" id="username" name="username" required autofocus
