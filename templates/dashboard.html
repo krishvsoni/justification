@@ -1,77 +1,90 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-  <div class="container mx-auto px-4">
-    <h2 class="text-2xl font-semibold mb-4">Hey, {{ username }} 👋</h2>
+<div class="container mx-auto px-4">
+  <h2 class="text-2xl font-semibold mb-4 text-center">Hey, {{ username }} 👋</h2>
 
-    <div class="bg-white rounded-lg shadow-md p-4 mt-8">
+  <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
+    <div class="bg-white rounded-lg shadow-md p-4">
       <h3 class="text-lg font-semibold mb-2">Attendance Calculator</h3>
-      <form id="attendanceCalculatorForm" method="post" action="{{ url_for('save_attendance') }}">
-        <input type="hidden" name="username" value="{{ username }}">
-        <label for="total_lectures">Total Lectures:</label>
-        <input type="number" id="totalLectures" name="total_lectures" required min="1">
-        <br>
-        <label for="attended_lectures">Attended Lectures:</label>
-        <input type="number" id="lecturesAttended" name="attended_lectures" required min="0">
-        <br>
-        <br>
-        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Save Attendance</button>
-    </form>
-    
-      <div id="attendanceResult"></div>
+      <form id="attendanceCalculatorForm" class="mb-4">
+        <div class="flex flex-col mb-4">
+          <label for="totalLectures" class="mb-2">Total Lectures:</label>
+          <input type="number" id="totalLectures" name="total_lectures" required min="1" class="form-input bg-gray-100 rounded-md mb-2">
+        </div>
+        <div class="flex flex-col mb-4">
+          <label for="lecturesAttended" class="mb-2">Attended Lectures:</label>
+          <input type="number" id="lecturesAttended" name="attended_lectures" required min="0" class="form-input bg-gray-100 rounded-md mb-2">
+        </div>
+        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mx-auto block">Save Attendance</button>
+      </form>
+      <div id="attendanceResult" class="font-bold"></div>
     </div>
 
-    <div class="bg-white rounded-lg shadow-md p-4 mt-8">
+    <div class="bg-white rounded-lg shadow-md p-4">
       <h3 class="text-lg font-semibold mb-2">Attendance Graph</h3>
-      <canvas class="w-full" id="attendanceChart"></canvas>
+      <canvas class="w-full h-auto" id="attendanceChart"></canvas>
     </div>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <div class="text-center mt-8">
+    <button onclick="fetchAttendance()" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">Fetch Attendance from MIS</button>
+  </div>
+</div>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      document.getElementById('attendanceCalculatorForm').addEventListener('submit', function(event) {
-        event.preventDefault();
-        var totalLectures = parseFloat(document.getElementById('totalLectures').value);
-        var lecturesAttended = parseFloat(document.getElementById('lecturesAttended').value);
-        var attendancePercentage = (lecturesAttended / totalLectures) * 100;
-        document.getElementById('attendanceResult').innerHTML = "<b> Attendance Percentage: " + attendancePercentage.toFixed(2) + "% </b>";
-        updateChart(lecturesAttended, totalLectures - lecturesAttended);
-      });
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+<df-messenger
+  chat-title="Krunal Sir"
+  agent-id="Your-Agent-ID"
+  language-code="en"
+></df-messenger>
 
-      var ctx = document.getElementById('attendanceChart').getContext('2d');
-      var myChart = new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-          labels: ['Attended', 'Missed'],
-          datasets: [{
-            label: 'Attendance',
-            data: [0, 0],
-            backgroundColor: [
-              'rgba(75, 192, 192, 0.2)',
-              'rgba(255, 99, 132, 0.2)'
-            ],
-            borderColor: [
-              'rgba(75, 192, 192, 1)',
-              'rgba(255, 99, 132, 1)'
-            ],
-            borderWidth: 1
-          }]
-        },
-        options: {
-          scales: {
-            y: {
-              beginAtZero: true
-            }
+
+<script>
+  function updateChart(attended, missed) {
+    var ctx = document.getElementById('attendanceChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+        labels: ['Attended', 'Missed'],
+        datasets: [{
+          label: 'Attendance',
+          data: [attended, missed],
+          backgroundColor: [
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(255, 99, 132, 0.2)'
+          ],
+          borderColor: [
+            'rgba(75, 192, 192, 1)',
+            'rgba(255, 99, 132, 1)'
+          ],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
           }
         }
-      });
-
-      function updateChart(attended, missed) {
-        myChart.data.datasets[0].data = [attended, missed];
-        myChart.update();
       }
     });
-  </script>
+  }
+
+  function fetchAttendance() {
+    window.location.href = "https://ums.paruluniversity.ac.in/StudentPanel/TTM_Attendance/TTM_Attendance_StudentAttendance.aspx?SelectedSemester=59mke11NsjY=";
+  }
+
+  document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById('attendanceCalculatorForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      var totalLectures = parseFloat(document.getElementById('totalLectures').value);
+      var lecturesAttended = parseFloat(document.getElementById('lecturesAttended').value);
+      var attendancePercentage = (lecturesAttended / totalLectures) * 100;
+      document.getElementById('attendanceResult').innerHTML = "<b>Attendance Percentage: " + attendancePercentage.toFixed(2) + "%</b>";
+      updateChart(lecturesAttended, totalLectures - lecturesAttended);
+    });
+  });
+</script>
 {% endblock %}

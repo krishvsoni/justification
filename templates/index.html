@@ -1,68 +1,42 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-<div class='background-image: linear-gradient(to top, var(--tw-gradient-stops)); '>
-  <div class="container mx-8 px-4" style="display: flex; justify-content: center; align-items: center; height: 80vh;  background-color: rgb(147 197 253);">
-    <div class="box" style="width: 300px; height: 200px; border: 1px solid black; padding: 20px; text-align: center; background-color: rgba(255, 255, 255, 0.8); border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);">
-
-      <h2 class="text-4xl font-extrabold dark:text-white ">Welcome to Class Count Authentication 🏫👥</h2>
-
-      
-      <br>
-      <br>
-      <br>
-      <br>
-      <button onclick="location.href='{{ url_for('login') }}'" class="bg-transparent hover:bg-gray-600 text-gray-800 font-semibold hover:text-white py-2 px-4 border border-gray-600 hover:border-transparent rounded">Sign In</button>
-      <span class="mx-6 font-bold">or</span>
-      <button onclick="location.href='{{ url_for('signup') }}'" class="bg-transparent hover:bg-gray-600 text-gray-800 font-semibold hover:text-white py-2 px-4 border border-gray-600 hover:border-transparent rounded">Sign Up</button>
-    
-
-      
-    </div>
-
-
-    
-<blockquote class="text-xl italic font-semibold text-gray-900 dark:text-white" style="margin-top: 30px;">
-  <svg class="w-8 h-8 text-gray-400 dark:text-gray-600 mb-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 14">
-      <path d="M6 0H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3H2a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Zm10 0h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3h-1a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Z"/>
-  </svg>
-  <p>"Use Flask-Wiz By Krish Soni"</p>
-</blockquote>
-
+<div class="container mx-auto px-4 sm:px-6 lg:px-8 flex justify-center items-center h-screen" style="background-image: url('your_image_url'); background-size: cover;">
+  <div class="bg-white p-8 rounded-lg shadow-md w-full sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl">
+    <h2 class="text-3xl font-bold text-center mb-8">Get Started With Justification </h2>
+    <button onclick="location.href='{{ url_for('login') }}'" class="w-full bg-blue-500 text-white font-semibold py-2 px-4 rounded-lg mb-4">Sign In</button>
+    <span class="block text-center text-gray-600 mb-4">or</span>
+    <button onclick="location.href='{{ url_for('signup') }}'" class="w-full bg-blue-500 text-white font-semibold py-2 px-4 rounded-lg">Sign Up</button>
+    <blockquote class="mt-8 text-lg italic font-semibold text-gray-900 text-center">
+      <svg class="w-8 h-8 inline-block mb-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 14">
+        <path d="M6 0H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3H2a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Zm10 0h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a3 3 0 0 1-3 3h-1a1 1 0 0 0 0 2h1a5.006 5.006 0 0 0 5-5V2a2 2 0 0 0-2-2Z"/>
+      </svg>
+      <p>"Powered By Flask-Wiz"</p>
+    </blockquote>
   </div>
-  <section class="bg-white">
-    <div class="mx-auto max-w-screen-xl px-4 py-12 sm:px-6 md:py-16 lg:px-8">
-      <div class="mx-auto max-w-3xl text-center">
-        <h2 class="text-3xl font-bold text-gray-900 sm:text-4xl">Trusted by 100+ Faculties</h2>
-  
-        <p class="mt-4 text-gray-500 sm:text-xl">
-          Trusted by students and Faculties from 100+ countries. We are the best in the market. Attendance One Step Solution.
-          Calculate Attendance With On Fingertips.
-        </p>
-      </div>
-  
-      <div class="mt-8 sm:mt-12">
-        <dl class="grid grid-cols-1 gap-4 sm:grid-cols-3">
-          <div class="flex flex-col rounded-lg bg-blue-50 px-4 py-8 text-center">
-            <dt class="order-last text-lg font-medium text-gray-500">Total Attendance Count</dt>
-  
-            <dd class="text-4xl font-extrabold text-blue-600 md:text-5xl">100+</dd>
-          </div>
-  
-          <div class="flex flex-col rounded-lg bg-blue-50 px-4 py-8 text-center">
-            <dt class="order-last text-lg font-medium text-gray-500">Universities</dt>
-  
-            <dd class="text-4xl font-extrabold text-blue-600 md:text-5xl">24</dd>
-          </div>
-  
-          <div class="flex flex-col rounded-lg bg-blue-50 px-4 py-8 text-center">
-            <dt class="order-last text-lg font-medium text-gray-500">Daily Login</dt>
-  
-            <dd class="text-4xl font-extrabold text-blue-600 md:text-5xl">86</dd>
-          </div>
-        </dl>
-      </div>
-    </div>
-  </section>
 </div>
+<section class="bg-white">
+  <div class="mx-auto max-w-screen-xl px-4 py-12 sm:px-6 md:py-16 lg:px-8">
+    <div class="mx-auto max-w-3xl text-center">
+      <h2 class="text-3xl font-bold text-gray-900 sm:text-4xl">Trusted by 100+ Faculties</h2>
+      <p class="mt-4 text-gray-500 sm:text-xl">Trusted by students and faculties from 100+ countries. We are the best in the market. Attendance One Step Solution. Calculate Attendance With On Fingertips.</p>
+    </div>
+    <div class="mt-8 sm:mt-12">
+      <dl class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+        <div class="flex flex-col rounded-lg bg-blue-50 px-4 py-8 text-center">
+          <dt class="order-last text-lg font-medium text-gray-500">Total Attendance Count</dt>
+          <dd class="text-4xl font-extrabold text-blue-600 md:text-5xl">100+</dd>
+        </div>
+        <div class="flex flex-col rounded-lg bg-blue-50 px-4 py-8 text-center">
+          <dt class="order-last text-lg font-medium text-gray-500">Universities</dt>
+          <dd class="text-4xl font-extrabold text-blue-600 md:text-5xl">24</dd>
+        </div>
+        <div class="flex flex-col rounded-lg bg-blue-50 px-4 py-8 text-center">
+          <dt class="order-last text-lg font-medium text-gray-500">Daily Login</dt>
+          <dd class="text-4xl font-extrabold text-blue-600 md:text-5xl">86</dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</section>
 {% endblock %}

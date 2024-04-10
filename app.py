@@ -5,7 +5,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 app = Flask(__name__)
 app.secret_key = 'process.env.JWT_SECRET'
 
-client = MongoClient('')  
+client = MongoClient('mongodb+srv://krishsoni:2203031050659@paytm.aujjoys.mongodb.net/')  
 db = client['flask-auth']  
 users_collection = db['users']  
 attendance_collection = db['attendance']
@@ -59,18 +59,22 @@ def welcome(username):
 @app.route('/save_attendance', methods=['POST'])
 def save_attendance():
     if request.method == 'POST':
-        username = request.form['username']
-        total_lectures = int(request.form['total_lectures'])
-        attended_lectures = int(request.form['attended_lectures'])
-        
-        attendance_collection.insert_one({'username': username, 'total_lectures': total_lectures, 'attended_lectures': attended_lectures})
+        try:
+            username = request.form['username']
+            total_lectures = int(request.form['total_lectures'])
+            attended_lectures = int(request.form['attended_lectures'])
+            
+            attendance_collection.insert_one({'username': username, 'total_lectures': total_lectures, 'attended_lectures': attended_lectures})
 
-        flash('Attendance saved successfully.', 'success')
-        return redirect(url_for('welcome', username=username))
+            flash('Attendance saved successfully.', 'success')
+            return redirect(url_for('welcome', username=username))
+        except Exception as e:
+            flash(f'Error occurred while saving attendance: {str(e)}', 'danger')
+            return redirect(url_for('index'))
     else:
         flash('Invalid request method.', 'danger')
         return redirect(url_for('index'))
-   
+
 
 if __name__ == '__main__':
     app.run(debug=True)
