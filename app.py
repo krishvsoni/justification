@@ -10,6 +10,7 @@ db = client['flask-auth']
 users_collection = db['users']  
 attendance_collection = db['attendance']
 
+
 @app.route('/')
 def index():
     return render_template('index.html')
