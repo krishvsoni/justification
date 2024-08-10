@@ -6,7 +6,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 app = Flask(__name__)
 app.secret_key = 'process.env.JWT_SECRET'
 
-client = MongoClient('')  
+client = MongoClient('mongodb+srv://krishsoni:2203031050659@paytm.aujjoys.mongodb.net/')  
 db = client['flask-auth']  
 users_collection = db['users']  
 attendance_collection = db['attendance']
